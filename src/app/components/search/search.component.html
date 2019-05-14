@@ -1,3 +1,17 @@
-<p>
-  search works!
-</p>
+<div class="row">
+  <div class="col">
+    <input #word type="text" (keyup)="search(word.value)" class="form-control" placeholder="search an artist"> <!-- the # allows to capture and send the value of the text through the keyup function. Keyup works as the keys are being inputed, no need for enter.-->
+  </div>
+ </div>
+
+  <div class="card-columns m-5">
+
+
+      <div class="card" *ngFor="let artist of artists">
+        <img [src]="artist.images | noimage" class="card-img-top" alt="..."> <!-- pipe to check if there's an image and return the first in case there ir-->
+        <div class="card-body">
+          <h5 class="card-title">{{artist.name}}</h5>
+          
+        </div>
+      </div>
+    </div>

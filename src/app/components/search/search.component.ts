@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { SpotifyService } from '../../services/spotify.service';
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.component.html',
-  styles: []
+  templateUrl: './search.component.html'
+
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
-  constructor() { }
+  artists: any [] = [];
 
-  ngOnInit() {
+  constructor(
+    private spotify: SpotifyService
+  ) { }
+
+  search(word: string) {
+    console.log(word);
+    this.spotify.getArtist(word)
+    .subscribe ((data: any) => {
+      console.log(data);
+      this.artists = data; // I only need to write data because of the pipe
+    });
   }
+
 
 }
