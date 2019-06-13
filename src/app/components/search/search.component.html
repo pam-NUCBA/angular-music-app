@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col">
-    <input #word type="text" (keyup)="search(word.value)" class="form-control" placeholder="search an artist"> <!-- the # allows to capture and send the value of the text through the keyup function. Keyup works as the keys are being inputed, no need for enter.-->
+    <input #word type="text" (keyup)="search(word.value)" class="form-control" placeholder="search an artist">
+    <!-- the # allows to capture and send the value of the text through the keyup function. Keyup works as the keys are being inputed, no need for enter.-->
   </div>
- </div>
-
-    <app-cards [items]="artists"></app-cards>
+</div>
+<!-- loading: -->
+<app-loading *ngIf="loading" class="m-3"></app-loading>
+<app-cards *ngIf="!loading" [items]="artists"></app-cards>

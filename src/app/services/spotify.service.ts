@@ -16,7 +16,7 @@ export class SpotifyService {
     const url = `https://api.spotify.com/v1/${query}`
 
     const headers = new HttpHeaders({
-      Authorization: 'Bearer BQCd4yxAXYFLhTGlZUc-EEsE93FpGql8y065JCgo1vGVdlR3yuQXKVC1CDyOZo5qThfkJQNtv3pFbgeAUiw',
+      Authorization: 'Bearer BQAtMSb-bQZ-O9rJEwWEm2wmZVVKsoR5m_gpCFwaZiFq7CodEK6M3rXYrw98Ql0KY4cQnDXVDHLDG5_FzqY',
     });
     return this.http.get(url, { headers })
   }
@@ -35,9 +35,17 @@ export class SpotifyService {
     //    .subscribe(data => {console.log(data)}) 
   }
 
-  getArtist(word: string) {
+  // getting all the artist for the cards:
+  getArtists(word: string) {
     return this.getQuery(`search?query=${word}&type=artist&market=AR&offset=0&limit=15`)
       .pipe(map(data => data['artists'].items)) // if an arrow function has only one line, it can be expressed without the return and the {}
+
+  }
+
+  // getting only one artist for the details:
+  getArtist(id: string) {
+    return this.getQuery(`artists/${id}`);
+   //   .pipe(map(data => data['artists'].items))
 
   }
 }
